@@ -12,7 +12,6 @@
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
     "write-translations": "docusaurus write-translations",
-    "pangu": "find build -name '*.html' -type f -print0 | xargs -I file_path -L 1 -0 sh -c 'npx pangu -f file_path > file_path.pangu && mv file_path.pangu file_path'"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.0",
