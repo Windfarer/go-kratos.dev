@@ -61,5 +61,5 @@ jobs:
           npm i
           fi
           yarn build
-          find build -name '*.html' -type f -print0 | xargs -I % -L 1 -0 sh -c "npx pangu -f % > %.pangu && mv %.pangu %"
+          find build -name '*.html' -type f -print0 | xargs -I % -L 1 -0 sh -c "echo %"
           yarn deploy-without-build
