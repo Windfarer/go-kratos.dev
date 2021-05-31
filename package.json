@@ -8,9 +8,11 @@
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
+    "deploy-without-build": "docusaurus deploy --skip-build",
     "serve": "docusaurus serve",
     "clear": "docusaurus clear",
-    "write-translations": "docusaurus write-translations"
+    "write-translations": "docusaurus write-translations",
+    "pangu": "find build -name '*.html' -type f -print0 | xargs -I file_path -L 1 -0 sh -c 'npx pangu -f file_path > file_path.pangu && mv file_path.pangu file_path'"
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-beta.0",
@@ -19,6 +21,7 @@
     "@mdx-js/react": "^1.6.21",
     "clsx": "^1.1.1",
     "nodejieba": "^2.5.1",
+    "pangu": "^4.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.1"
   },

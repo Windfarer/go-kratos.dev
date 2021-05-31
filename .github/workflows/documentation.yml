@@ -60,4 +60,6 @@ jobs:
           else
           npm i
           fi
-          npx docusaurus deploy
+          yarn build
+          yarn pangu
+          yarn deploy-without-build
