@@ -1,1 +1,0 @@
-(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[740],{6353:function(e){"use strict";e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Go\u5de5\u7a0b\u5316 - Project Layout \u6700\u4f73\u5b9e\u8df5","permalink":"/en/blog/go-project-layout"}]}')}}]);
