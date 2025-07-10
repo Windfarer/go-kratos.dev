@@ -1,0 +1,47 @@
+nohup: ignoring input
+
+> docs@0.0.0 start
+> docusaurus start
+
+[INFO] Starting the development server...
+[WARNING] Some blog authors used in "2021-06-03-go-kratos-OpenTelemetry.md" are not defined in "authors.yml":
+- {"name":"shenqidebaozi","title":"Maintainer of go-kratos","url":"https://github.com/shenqidebaozi","imageURL":"https://avatars.githubusercontent.com/u/35397691?s=60&v=4","key":null,"page":null}
+
+Note that we recommend to declare authors once in a "authors.yml" file and reference them by key in blog posts front matter to avoid author info duplication.
+But if you want to allow inline blog authors, you can disable this message by setting onInlineAuthors: 'ignore' in your blog plugin options.
+More info at https://docusaurus.io/docs/blog
+
+[WARNING] Some blog authors used in "2021-06-03-go-layout-operation-process.md" are not defined in "authors.yml":
+- {"name":"shenqidebaozi","title":"Maintainer of go-kratos","url":"https://github.com/shenqidebaozi","imageURL":"https://avatars.githubusercontent.com/u/35397691?s=60&v=4","key":null,"page":null}
+
+Note that we recommend to declare authors once in a "authors.yml" file and reference them by key in blog posts front matter to avoid author info duplication.
+But if you want to allow inline blog authors, you can disable this message by setting onInlineAuthors: 'ignore' in your blog plugin options.
+More info at https://docusaurus.io/docs/blog
+
+[WARNING] Some blog authors used in "2021-03-08-go-project-layout.md" are not defined in "authors.yml":
+- {"name":"Tony","title":"Maintainer of go-kratos","url":"https://github.com/tonybase","imageURL":"https://avatars.githubusercontent.com/u/3871120?s=460&v=4","key":null,"page":null}
+
+Note that we recommend to declare authors once in a "authors.yml" file and reference them by key in blog posts front matter to avoid author info duplication.
+But if you want to allow inline blog authors, you can disable this message by setting onInlineAuthors: 'ignore' in your blog plugin options.
+More info at https://docusaurus.io/docs/blog
+
+[WARNING] Some blog authors used in "2021-07-14-go-project-wire.md" are not defined in "authors.yml":
+- {"name":"Windfarer","title":"Maintainer of go-kratos","url":"https://github.com/Windfarer","imageURL":"https://avatars.githubusercontent.com/u/7036121?v=4","key":null,"page":null}
+
+Note that we recommend to declare authors once in a "authors.yml" file and reference them by key in blog posts front matter to avoid author info duplication.
+But if you want to allow inline blog authors, you can disable this message by setting onInlineAuthors: 'ignore' in your blog plugin options.
+More info at https://docusaurus.io/docs/blog
+
+[WARNING] Docusaurus found blog posts without truncation markers:
+- "blog/2021-07-14-go-project-wire.md"
+- "blog/2021-06-03-go-kratos-OpenTelemetry.md"
+- "blog/2021-06-03-go-layout-operation-process.md"
+- "blog/2021-03-08-go-project-layout.md"
+
+We recommend using truncation markers (`<!-- truncate -->` or `{/* truncate */}`) in blog posts to create shorter previews on blog paginated lists.
+Tip: turn this security off with the `onUntruncatedBlogPosts: 'ignore'` blog plugin option.
+[SUCCESS] Docusaurus website is running at: http://localhost:3000/
+[webpackbar] ℹ Compiling Client
+[webpackbar] ✔ Client: Compiled successfully in 28.44s
+[WARNING] {"moduleIdentifier":"/home/runner/app/node_modules/babel-loader/lib/index.js??ruleSet[1].rules[5].use[0]!/home/runner/app/src/theme/Footer/index.js","moduleName":"./src/theme/Footer/index.js","loc":"8:439-460","message":"export 'default' (imported as 'styles') was not found in './index.css' (module has no exports)"}
+client (webpack 5.100.0) compiled with 1 warning
