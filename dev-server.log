@@ -45,3 +45,32 @@ Tip: turn this security off with the `onUntruncatedBlogPosts: 'ignore'` blog plu
 [webpackbar] ✔ Client: Compiled successfully in 28.44s
 [WARNING] {"moduleIdentifier":"/home/runner/app/node_modules/babel-loader/lib/index.js??ruleSet[1].rules[5].use[0]!/home/runner/app/src/theme/Footer/index.js","moduleName":"./src/theme/Footer/index.js","loc":"8:439-460","message":"export 'default' (imported as 'styles') was not found in './index.css' (module has no exports)"}
 client (webpack 5.100.0) compiled with 1 warning
+node:events:502
+      throw er; // Unhandled 'error' event
+      ^
+
+RangeError: Invalid WebSocket frame: invalid status code 1006
+    at Receiver.controlMessage (/home/runner/app/node_modules/webpack-dev-server/node_modules/ws/lib/receiver.js:626:30)
+    at Receiver.getData (/home/runner/app/node_modules/webpack-dev-server/node_modules/ws/lib/receiver.js:477:12)
+    at Receiver.startLoop (/home/runner/app/node_modules/webpack-dev-server/node_modules/ws/lib/receiver.js:167:16)
+    at Receiver._write (/home/runner/app/node_modules/webpack-dev-server/node_modules/ws/lib/receiver.js:94:10)
+    at writeOrBuffer (node:internal/streams/writable:572:12)
+    at _write (node:internal/streams/writable:501:10)
+    at Writable.write (node:internal/streams/writable:510:10)
+    at Socket.socketOnData (/home/runner/app/node_modules/webpack-dev-server/node_modules/ws/lib/websocket.js:1355:35)
+    at Socket.emit (node:events:524:28)
+    at addChunk (node:internal/streams/readable:561:12)
+    at readableAddChunkPushByteMode (node:internal/streams/readable:512:3)
+    at Readable.push (node:internal/streams/readable:392:5)
+    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)
+Emitted 'error' event on WebSocket instance at:
+    at Receiver.receiverOnError (/home/runner/app/node_modules/webpack-dev-server/node_modules/ws/lib/websocket.js:1199:15)
+    at Receiver.emit (node:events:524:28)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  code: 'WS_ERR_INVALID_CLOSE_CODE',
+  [Symbol(status-code)]: 1002
+}
+
+Node.js v20.19.2
