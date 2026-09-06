@@ -149,14 +149,11 @@ path := http.BuildPath("/v1/users/{id}", &struct {
 
 ## v3 新增能力
 
-以下能力可在迁移时采用，但不是必须替换项：
-
-- `config.Get[T]` 可把指定配置值解码为 primitive 或 typed value；自定义 merge 不再依赖旧 Mergo coupling。
-- `errors` 暴露兼容标准库的 `Is`、`As`、`Unwrap`、`Join`、cause chain、clone metadata 和 Too Many Requests helper。
-- HTTP transport 支持 server-sent event/WebSocket stream helper、`google.api.HttpBody` response、redirect error 和更多 server option。只有 service contract 需要时才采用。
-- Validation 接受应用 validator function，包括 Protovalidate 或 AIP field-behavior validation。
-
-应针对应用实际使用的 package 检查 release note 和导出 API。主版本升级期间无需为了使用所有新 helper 而改写不受影响的代码。
+完成必需迁移后，v3 还提供生成的 SSE/WebSocket HTTP streaming、泛型
+`config.Get[T]`、自定义 validation callback、slog handler 与 context attribute、
+独立的 Go JSON/protobuf JSON codec，以及新的 error helper。这些是可选的服务功能，
+不是升级步骤。接口、示例与采用时的注意点见
+[Kratos v3 新功能](/zh-cn/docs/migration/v3-new-features/)。
 
 ## 按依赖顺序重新生成
 

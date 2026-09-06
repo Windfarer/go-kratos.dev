@@ -24,7 +24,7 @@ an application must add itself.
    understand the Todo example from protobuf API to Ent repository.
 3. Use the [component pages](/docs/component/application/) when configuring an
    application, transport, middleware, registry, or codec.
-4. Existing v2 services should begin with [Migrate from v2 to v3](/docs/migration/v2-to-v3/).
+4. Existing v2 services should begin with [Migrate from v2 to v3](/docs/migration/v2-to-v3/), then review [New Features in Kratos v3](/docs/migration/v3-new-features/).
 
 ## Core model
 

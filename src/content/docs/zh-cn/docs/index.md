@@ -13,7 +13,7 @@ Kratos v3 是一个轻量级 Go 云原生服务框架，提供应用生命周期
 1. 按[快速开始](/zh-cn/docs/getting-started/start/)准备工具、复制项目模板、生成代码、运行测试并启动服务。
 2. 阅读[基于 Layout 开发服务](/zh-cn/docs/guide/service-development/)，理解 Todo 示例从 protobuf API 到 Ent repository 的完整流程。
 3. 配置应用、transport、middleware、注册中心或 codec 时查阅[组件文档](/zh-cn/docs/component/application/)。
-4. 已有 v2 服务应先阅读[从 v2 迁移到 v3](/zh-cn/docs/migration/v2-to-v3/)。
+4. 已有 v2 服务应先阅读[从 v2 迁移到 v3](/zh-cn/docs/migration/v2-to-v3/)，再按需采用[Kratos v3 新功能](/zh-cn/docs/migration/v3-new-features/)。
 
 ## Core 模型
 

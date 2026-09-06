@@ -20,6 +20,7 @@ import (
 	"github.com/go-kratos/kratos/v3/log"
 	"github.com/go-kratos/kratos/v3/middleware"
 	"github.com/go-kratos/kratos/v3/middleware/circuitbreaker"
+	"github.com/go-kratos/kratos/v3/middleware/validate"
 	kratoshttp "github.com/go-kratos/kratos/v3/transport/http"
 	jwtv5 "github.com/golang-jwt/jwt/v5"
 )
@@ -98,6 +99,28 @@ func TestErrorMetadataCauseAndExtraction(t *testing.T) {
 	}
 	if got := kratoserrors.Reason(err); got != "DATABASE" {
 		t.Fatalf("reason = %q, want %q", got, "DATABASE")
+	}
+}
+
+func TestV3ErrorAndValidationAdditions(t *testing.T) {
+	first := stderrors.New("first")
+	second := stderrors.New("second")
+	joined := kratoserrors.Join(first, second)
+	if !stderrors.Is(joined, first) || !stderrors.Is(joined, second) {
+		t.Fatal("joined error did not preserve both causes")
+	}
+	if !kratoserrors.IsTooManyRequests(kratoserrors.TooManyRequests("RATE_LIMITED", "try again later")) {
+		t.Fatal("TooManyRequests helper did not map to HTTP 429")
+	}
+
+	validationCause := stderrors.New("invalid request")
+	mw := validate.Validator(func(any) error { return validationCause })
+	_, err := mw(func(context.Context, any) (any, error) {
+		t.Fatal("handler ran after validation failed")
+		return nil, nil
+	})(context.Background(), struct{}{})
+	if !kratoserrors.IsBadRequest(err) || !stderrors.Is(err, validationCause) {
+		t.Fatalf("validation error = %v, want Bad Request retaining its cause", err)
 	}
 }
 

@@ -113,9 +113,15 @@ WebSocket supports two-way protobuf messages. Regenerate bindings after changing
 streaming methods because the generated HTTP method and handler determine the
 wire behavior.
 
-Set explicit stream deadlines and handle cancellation in the service. The HTTP
-server detaches a stream from the ordinary per-request timeout after the stream
-is created, so a long-lived stream must enforce its own lifetime policy.
+Set explicit stream deadlines and stop when `Send` or `Recv` fails. The HTTP
+server detaches a stream from the ordinary request deadline and cancellation
+after the stream is created, so a long-lived stream must enforce its own
+lifetime policy.
+
+See [HTTP Streaming with SSE and
+WebSocket](/docs/component/transport/http-streaming/) for protobuf definitions,
+typed server and client examples, codec selection, closure behavior, and proxy
+configuration.
 
 ## Path and codec helpers
 

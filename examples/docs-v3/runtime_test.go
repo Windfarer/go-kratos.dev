@@ -19,7 +19,102 @@ import (
 	"github.com/go-kratos/kratos/v3/middleware/recovery"
 	"github.com/go-kratos/kratos/v3/transport"
 	kratoshttp "github.com/go-kratos/kratos/v3/transport/http"
+	"google.golang.org/protobuf/types/known/wrapperspb"
 )
+
+func TestHTTPServerSentEventStream(t *testing.T) {
+	srv := kratoshttp.NewServer()
+	srv.Route("/").GET("/events", func(ctx kratoshttp.Context) error {
+		stream := kratoshttp.NewServerSentEventServerStream(ctx)
+		if err := stream.Send(wrapperspb.String("ready")); err != nil {
+			return err
+		}
+		return stream.Close(nil)
+	})
+
+	server := httptest.NewServer(srv)
+	defer server.Close()
+	client, err := kratoshttp.NewClient(context.Background(),
+		kratoshttp.WithEndpoint(server.URL),
+		kratoshttp.WithTimeout(time.Second),
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer client.Close()
+
+	stream, err := client.ServerSentEvent(
+		context.Background(),
+		http.MethodGet,
+		"/events",
+		nil,
+		kratoshttp.Accept("text/event-stream"),
+		kratoshttp.ContentType("application/protojson"),
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer stream.CloseSend()
+
+	var reply wrapperspb.StringValue
+	if err := stream.Recv(&reply); err != nil {
+		t.Fatal(err)
+	}
+	if reply.Value != "ready" {
+		t.Fatalf("SSE value = %q, want ready", reply.Value)
+	}
+}
+
+func TestHTTPWebSocketStream(t *testing.T) {
+	srv := kratoshttp.NewServer()
+	srv.Route("/").GET("/sync", func(ctx kratoshttp.Context) error {
+		stream, err := kratoshttp.NewWebSocketServerStream(ctx)
+		if err != nil {
+			return err
+		}
+		var request wrapperspb.StringValue
+		if err := stream.Recv(&request); err != nil {
+			return stream.Close(err)
+		}
+		if err := stream.Send(wrapperspb.String("echo:" + request.Value)); err != nil {
+			return stream.Close(err)
+		}
+		return stream.Close(nil)
+	})
+
+	server := httptest.NewServer(srv)
+	defer server.Close()
+	client, err := kratoshttp.NewClient(context.Background(),
+		kratoshttp.WithEndpoint(server.URL),
+		kratoshttp.WithTimeout(time.Second),
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer client.Close()
+
+	stream, err := client.WebSocket(
+		context.Background(),
+		"/sync",
+		kratoshttp.Accept("application/protojson"),
+		kratoshttp.ContentType("application/protojson"),
+	)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer stream.CloseSend()
+	if err := stream.Send(wrapperspb.String("todo")); err != nil {
+		t.Fatal(err)
+	}
+
+	var reply wrapperspb.StringValue
+	if err := stream.Recv(&reply); err != nil {
+		t.Fatal(err)
+	}
+	if reply.Value != "echo:todo" {
+		t.Fatalf("WebSocket value = %q, want echo:todo", reply.Value)
+	}
+}
 
 func TestMiddlewareExecutionOrder(t *testing.T) {
 	var calls []string

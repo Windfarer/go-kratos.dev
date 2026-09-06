@@ -102,8 +102,12 @@ WebSocket。生成的客户端暴露带类型的流接口，因此服务代码�
 Protobuf 消息。修改流式方法后必须重新生成绑定，因为生成的 HTTP 方法和处理
 函数决定线上的实际行为。
 
-服务中应设置明确的流截止时间并处理取消。流创建后，HTTP 服务端会让它脱离普通
-请求超时，因此长连接需要自己的生命周期策略。
+服务中应设置明确的流截止时间，并在 `Send` 或 `Recv` 失败时结束处理。流创建后，
+HTTP 服务端会让它脱离普通请求的 deadline 与 cancellation，因此长连接需要自己的
+生命周期策略。
+
+Protobuf 定义、类型安全的 server/client 示例、codec 选择、关闭行为和 proxy
+配置见[使用 SSE 与 WebSocket 实现 HTTP 流式调用](/zh-cn/docs/component/transport/http-streaming/)。
 
 ## 路径与 codec 辅助方法
 

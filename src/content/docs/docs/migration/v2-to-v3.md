@@ -180,22 +180,12 @@ recreated, not manually edited.
 
 ## New v3 capabilities
 
-These additions may be useful during the migration but are not mandatory
-replacements:
-
-- `config.Get[T]` decodes a named configuration value into primitives or a
-  typed value; custom merge behavior no longer requires the old Mergo coupling.
-- `errors` exposes standard-library-compatible `Is`, `As`, `Unwrap`, `Join`,
-  cause chaining, cloned metadata, and a Too Many Requests helper.
-- HTTP transport supports server-sent event/WebSocket stream helpers,
-  `google.api.HttpBody` responses, redirect errors, and additional server
-  options. Adopt them only where the service contract needs them.
-- Validation accepts application validator functions, including Protovalidate
-  or AIP field-behavior validation.
-
-Review release notes and exported APIs for packages your application uses.
-Do not rewrite unaffected code solely to adopt every new helper during a major
-upgrade.
+After the required migration, v3 also provides generated HTTP streaming over
+SSE and WebSocket, generic `config.Get[T]`, custom validation callbacks, slog
+handlers and context attributes, separate Go JSON/protobuf JSON codecs, and new
+error helpers. These are optional service features rather than upgrade steps.
+See [New Features in Kratos v3](/docs/migration/v3-new-features/) for their
+interfaces, examples, and adoption considerations.
 
 ## Regenerate in dependency order
 
